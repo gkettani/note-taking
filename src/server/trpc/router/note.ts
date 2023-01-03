@@ -19,4 +19,33 @@ export const noteRouter = router({
         },
       });
     }),
+
+  update: publicProcedure
+    .input(
+      z.object({
+        id: z.string(),
+        title: z.string(),
+        content: z.string(),
+      }))
+    .mutation(({ input, ctx }) => {
+      const { id, title, content } = input;
+      
+      return ctx.prisma.note.update({
+        where: { id },
+        data: {
+          title,
+          content,
+        },
+      });
+    }),
+
+  delete: publicProcedure
+    .input(z.object({ id: z.string() }))
+    .mutation(({ input, ctx }) => {
+      const { id } = input;
+      
+      return ctx.prisma.note.delete({
+        where: { id },
+      });
+    }),
 })

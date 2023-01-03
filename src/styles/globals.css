@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.editor-content {
+  height: calc(100% - 6rem);
+  scroll-behavior: smooth;
+}
+
+.editor-content::-webkit-scrollbar {
+  width: .5rem;
+}
+
+.editor-content::-webkit-scrollbar-thumb {
+  background: rgb(187, 186, 186);
+  border-radius: 3rem;
+}

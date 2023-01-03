@@ -40,10 +40,14 @@ export default function TextEditor({
     }
   };
 
-  if (!note) return null;
+  if (!note) return (
+    <div className="w-4/5">
+      <div className="text-center text-2xl p-5">Start by creating a note</div>
+    </div>
+  )
   
   return (
-    <div className="border w-full shadow-lg">
+    <div className="border w-4/5 shadow-md rounded-md overflow-hidden">
       <OptionsBar updatedAt={note.updatedAt} noteId={note.id} deleteNote={deleteNote}/>
       <input 
         placeholder="Untitled" 
@@ -55,7 +59,7 @@ export default function TextEditor({
       <textarea 
         placeholder="Start writing here" 
         ref={contentRef} 
-        className="editor-content w-full resize-none outline-none overflow-auto px-10 pt-5 text-justify"
+        className="editor-content custom-scrollbar w-full resize-none outline-none overflow-auto px-10 pt-5 text-justify"
         value={content} 
         onChange={(e) => updateContent(e)}
       />

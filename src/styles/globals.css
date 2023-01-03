@@ -3,15 +3,24 @@
 @tailwind utilities;
 
 .editor-content {
-  height: calc(100% - 6rem);
+  height: calc(100% - 5.5rem);
+}
+.custim-scrollbar {
+  overflow-y: auto;
+  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
-.editor-content::-webkit-scrollbar {
+.custom-scrollbar::-webkit-scrollbar {
   width: .5rem;
 }
 
-.editor-content::-webkit-scrollbar-thumb {
+.custom-scrollbar::-webkit-scrollbar-thumb {
   background: rgb(187, 186, 186);
   border-radius: 3rem;
+}
+
+.note-list {
+  height: calc(100% - 8.5rem);
+  overflow-y: auto;
 }

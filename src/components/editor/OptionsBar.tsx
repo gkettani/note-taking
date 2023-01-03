@@ -1,4 +1,6 @@
-import React from 'react'
+import { IoTrashOutline, IoEllipsisHorizontalCircle, IoDownloadOutline } from 'react-icons/io5'
+import DeleteModal from '../modals/DeleteModal';
+import { useState } from 'react';
 
 export default function OptionsBar({ 
   deleteNote, 
@@ -9,14 +11,23 @@ export default function OptionsBar({
     updatedAt: Date | null,
     noteId: string
     }) {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="flex justify-between bg-white">
-      <p className="mt-2 ml-10">Last Updated: {updatedAt?.toLocaleString()}</p>
-      <div className=" mt-2 mr-12 flex gap-3">
-        <button className="bg-blue-900 text-white p-1 rounded-md">....</button>
-        <button className="bg-blue-900 text-white p-1 rounded-md" onClick={() => deleteNote(noteId)}>Delete</button>
+      <p className="text-sm mt-2 ml-5 text-slate-500">Last edit: {updatedAt?.toLocaleDateString('en-US',{year: "numeric", month: "long", day: "numeric"})}</p>
+      <div className=" mt-2 mr-5 flex gap-3">
+        <button title='Download in PDF'>
+          <IoDownloadOutline className="text-2xl text-purple-600"/>
+        </button>
+        <button title='Settings'>
+          <IoEllipsisHorizontalCircle className="text-2xl text-purple-600"/>
+        </button>
+        <button title='Delete note' onClick={() => setIsOpen(true)}>
+          <IoTrashOutline className="text-2xl text-purple-600"/>
+        </button>
       </div>
+      <DeleteModal isOpen={isOpen} setIsOpen={setIsOpen} deleteNote={() => deleteNote(noteId)} />
     </div>
   )
 }

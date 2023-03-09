@@ -3,7 +3,7 @@ import { z } from "zod";
 import { router, publicProcedure } from "../trpc";
 
 export const noteRouter = router({
-  getAll: publicProcedure.query(({ ctx }) => {
+  list: publicProcedure.query(({ ctx }) => {
     return ctx.prisma.note.findMany();
   }),
 

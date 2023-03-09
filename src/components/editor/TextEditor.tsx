@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import type { RouterOutputs } from '../../utils/trpc';
+// import Example from '../Test';
 import OptionsBar from './OptionsBar';
 
 export default function TextEditor({ 
@@ -8,7 +9,7 @@ export default function TextEditor({
   deleteNote 
 }: {
   debounceApiCall: (id: string, title: string, content: string) => void,
-  note: RouterOutputs['notes']['getAll'][number] | undefined,
+  note: RouterOutputs['notes']['list'][number] | undefined,
   deleteNote: (id: string) => void
   }) {
 
@@ -43,6 +44,7 @@ export default function TextEditor({
   if (!note) return (
     <div className="w-4/5">
       <div className="text-center text-2xl p-5">Start by creating a note</div>
+      {/* <Example /> */}
     </div>
   )
   

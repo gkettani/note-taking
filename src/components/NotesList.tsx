@@ -1,22 +1,28 @@
-import { useState } from 'react';
 import { IoCreateOutline } from 'react-icons/io5';
 import SearchBar from './SearchBar';
 import type { RouterOutputs } from '../utils/trpc';
+
+
+type Note = RouterOutputs["notes"]["list"][number] | undefined;
 
 export default function NotesList({ 
   notes,
   updateEditor,
   createNote,
+  currentNote,
+  setCurrentNote
  }: {
-  notes: RouterOutputs['notes']['getAll'] | undefined,
+  notes: RouterOutputs["notes"]["list"] | undefined,
   updateEditor: (id: string) => void,
   createNote: () => void,
+  currentNote: Note | undefined,
+  setCurrentNote: (note: Note) => void
  }) {
 
-  const [selectedNoteId, setSelectedNoteId] = useState<string | null>(null)
-  const handleNoteClick = (id: string) => {
-    updateEditor(id)
-    setSelectedNoteId(id)
+  const handleNoteClick = (note: Note) => {
+    if (!note) return;
+    updateEditor(note.id)
+    setCurrentNote(note)
   }
   return (
     <div className="w-1/5">
@@ -34,10 +40,10 @@ export default function NotesList({
             className={`
               p-3 hover:bg-purple-200 cursor-pointer border-b-2
               ${
-                note.id === selectedNoteId ? "bg-purple-100 pointer-events-none" : ""
+                note.id === currentNote?.id ? "bg-purple-100 pointer-events-none" : ""
               }`
             }
-            onClick={() => handleNoteClick(note.id)}>
+            onClick={() => handleNoteClick(note)}>
             <h2 className="text-base truncate font-bold">{note.title || "Untitled"}</h2>
             <p className="text-slate-500 text-sm truncate">{note.content}</p>
           </li>

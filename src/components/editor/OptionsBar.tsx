@@ -15,7 +15,7 @@ export default function OptionsBar({
 
   return (
     <div className="flex justify-between bg-white">
-      <p className="text-sm mt-2 ml-5 text-slate-500">Last edit: {updatedAt?.toLocaleDateString('en-US',{year: "numeric", month: "long", day: "numeric"})}</p>
+      <p className="text-sm mt-2 ml-5 text-slate-500">Last edit: {updatedAt?.toLocaleDateString('en-US',{year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "numeric", second:"numeric" })}</p>
       <div className=" mt-2 mr-5 flex gap-3">
         <button title='Download in PDF'>
           <IoDownloadOutline className="text-2xl text-purple-600"/>
